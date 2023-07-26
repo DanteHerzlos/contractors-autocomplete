@@ -1,0 +1,41 @@
+.option {
+  cursor: pointer;
+  padding: 7px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.option._hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.option._selected {
+  background-color: #3b82f680;
+}
+
+.option._disabled {
+  color: #cccccc;
+  pointer-events: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.name {
+  font-size: 1rem;
+}
+
+.codes {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.editBtn {
+  fill: rgba(0, 0, 0, 0.5);
+}

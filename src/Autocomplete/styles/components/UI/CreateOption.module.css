@@ -1,0 +1,17 @@
+.option {
+  cursor: pointer;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.option._hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.option._disabled {
+  color: #cccccc;
+  pointer-events: none;
+}
+

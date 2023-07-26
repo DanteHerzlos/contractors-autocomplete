@@ -56,7 +56,7 @@ const VirtualList = forwardRef<VirtualListRef, VirtualListProps>(
 
     //Virtual props
     const [start, setStart] = useState(0);
-    const renderEl = Math.ceil(listHi / optionHi) + 8;
+    const renderEl = Math.ceil(listHi / optionHi) + 4;
     const arr = new Array(renderEl).fill(0);
     const listRef = useRef<HTMLParagraphElement>(null);
 
@@ -140,6 +140,7 @@ const VirtualList = forwardRef<VirtualListRef, VirtualListProps>(
                 start + index >= 0 &&
                 (!options[start + index].hasOwnProperty("__creatable") ? (
                   <Option
+                    highlight={inputRef.current?.getInputValue()} 
                     onEdit={onEdit}
                     option={options[start + index]}
                     optionRef={(element) =>

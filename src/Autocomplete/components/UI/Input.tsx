@@ -29,6 +29,7 @@ interface InputProps {
 
 export interface InputRef {
   selectOption: (option: OptionType) => void;
+  getInputValue: () => string;
 }
 
 const Input = forwardRef<InputRef, InputProps>(
@@ -62,6 +63,9 @@ const Input = forwardRef<InputRef, InputProps>(
         } else if (onCreate) {
           onCreate(option.name);
         }
+      },
+      getInputValue() {
+        return inputRef.current?.value;
       },
     }));
 

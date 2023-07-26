@@ -5,6 +5,7 @@ import IconButton from "./IconButton";
 
 interface OptionProps extends React.HTMLAttributes<HTMLDivElement> {
   onEdit?: (option: OptionType) => void;
+  highlight?: string;
   isSelected: boolean;
   isHovered: boolean;
   option: OptionType;
@@ -13,6 +14,7 @@ interface OptionProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Option({
   onEdit,
+  highlight,
   isHovered,
   isSelected,
   option,
@@ -33,6 +35,23 @@ export function Option({
     if (onEdit) onEdit(option);
   };
 
+  function highlighter(text: string) {
+    if (highlight) {
+      const start = text.indexOf(highlight);
+      if (start !== -1) {
+        const end = start + highlight.length;
+        return (
+          <>
+            {text.slice(0, start)}
+            <b>{text.slice(start, end)}</b>
+            {text.slice(end)}
+          </>
+        );
+      }
+    }
+    return <>{text}</>;
+  }
+
   return (
     <div
       {...props}
@@ -47,12 +66,11 @@ export function Option({
       }
     >
       <div className={cl.info}>
-        <span className={cl.name}>{option.name}</span>
-
+        <span className={cl.name}>{highlighter(option.name)}</span>
         <div className={cl.codes}>
-          <span>ИНН: {option.inn}</span>
-          <span>КПП:{option.kpp}</span>
-          <span>ОГРН: {option.ogrn}</span>
+          {option.inn && <span>ИНН: {highlighter(option.inn)}</span>}
+          {option.kpp && <span>КПП: {highlighter(option.kpp)}</span>}
+          {option.ogrn && <span>ОГРН: {highlighter(option.ogrn)}</span>}
         </div>
       </div>
       <IconButton onClick={editHandler} type="button">

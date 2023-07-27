@@ -2,6 +2,7 @@ import { OptionType } from "Autocomplete/types/AutocompleteTypes";
 
 export class Filtration {
   static byString(options: OptionType[], filterString: string): OptionType[] {
+    const filterStringLC = filterString.toLowerCase()
     const newArr = [];
     let is_create = true;
     for (let i = 0; i < options.length; i++) {
@@ -9,13 +10,13 @@ export class Filtration {
         is_create = false;
       }
       if (
-        options[i].name.includes(filterString) ||
+        options[i].name.toLowerCase().includes(filterStringLC) ||
         (options[i].hasOwnProperty("inn") &&
-          options[i].inn!.includes(filterString)) ||
+          options[i].inn!.includes(filterStringLC)) ||
         (options[i].hasOwnProperty("kpp") &&
-          options[i].kpp!.includes(filterString)) ||
+          options[i].kpp!.includes(filterStringLC)) ||
         (options[i].hasOwnProperty("ogrn") &&
-          options[i].ogrn!.includes(filterString))
+          options[i].ogrn!.includes(filterStringLC))
       ) {
         newArr.push(options[i]);
       }

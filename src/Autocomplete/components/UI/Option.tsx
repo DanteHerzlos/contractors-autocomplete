@@ -37,7 +37,7 @@ export function Option({
 
   function highlighter(text: string) {
     if (highlight) {
-      const start = text.indexOf(highlight);
+      const start = text.toLowerCase().indexOf(highlight.toLowerCase());
       if (start !== -1) {
         const end = start + highlight.length;
         return (

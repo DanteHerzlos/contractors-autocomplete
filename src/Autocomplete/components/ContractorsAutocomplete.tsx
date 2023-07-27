@@ -1,6 +1,6 @@
 import { useDeferredValue, useRef, useState } from "react";
 import cl from "../styles/components/Autocomplete.module.css";
-import { OptionType } from "Autocomplete/types/AutocompleteTypes";
+import { OptionType } from "../types/AutocompleteTypes";
 import Input, { InputRef } from "./UI/Input";
 import VirtualList, { VirtualListRef } from "./UI/VirtualList";
 
@@ -11,7 +11,7 @@ interface AutocompleteProps {
   disabled?: boolean;
   defaultValue?: OptionType;
   required?: boolean;
-  options: OptionType[];
+  options?: OptionType[];
   label?: string;
   noOptionsMessage?: string;
   optionHi?: number;
@@ -25,7 +25,7 @@ const ContractorsAutocomplete = ({
   defaultValue,
   required,
   optionHi = 68,
-  options,
+  options = [],
   label = "",
   noOptionsMessage = "Нет элементов",
   onCreate,

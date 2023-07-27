@@ -1,4 +1,4 @@
-import { OptionType } from "Autocomplete/types/AutocompleteTypes";
+import { OptionType } from "../types/AutocompleteTypes";
 
 export class Filtration {
   static byString(options: OptionType[], filterString: string): OptionType[] {

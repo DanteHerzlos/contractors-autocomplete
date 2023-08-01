@@ -1,4 +1,4 @@
-import { useDeferredValue, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useRef, useState } from "react";
 import cl from "../styles/components/Autocomplete.module.css";
 import { OptionType } from "../types/AutocompleteTypes";
 import Input, { InputRef } from "./UI/Input";
@@ -25,7 +25,7 @@ const ContractorsAutocomplete = ({
   defaultValue,
   required,
   optionHi = 68,
-  options = [],
+  options,
   label = "",
   noOptionsMessage = "Нет элементов",
   onCreate,
@@ -36,11 +36,15 @@ const ContractorsAutocomplete = ({
   const inputRef = useRef<InputRef>(null);
   const optionsRef = useRef<VirtualListRef>(null);
   const [isFilteredList, setIsFilteredList] = useState<boolean>(false);
-  const [filteredList, setFilteredList] = useState<OptionType[]>(options);
+  const [filteredList, setFilteredList] = useState<OptionType[]>(options || []);
   const [selectedOption, setSelectedOption] = useState<OptionType | null>(
     defaultValue || null,
   );
   const deferredFilteredList = useDeferredValue(filteredList);
+
+  useEffect(() => {
+    if (options !== filteredList) setFilteredList(options || []);
+  }, [options]);
 
   return (
     <div className={cl.container}>
@@ -60,7 +64,7 @@ const ContractorsAutocomplete = ({
         setSelectedOption={setSelectedOption}
         selectedOption={selectedOption}
         label={label}
-        options={options}
+        options={options || []}
         optionsRef={optionsRef}
       />
       <VirtualList

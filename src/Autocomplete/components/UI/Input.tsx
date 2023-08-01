@@ -65,7 +65,7 @@ const Input = forwardRef<InputRef, InputProps>(
         }
       },
       getInputValue() {
-        return inputRef.current?.value;
+        return inputRef.current!.value;
       },
     }));
 

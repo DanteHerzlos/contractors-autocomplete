@@ -30,6 +30,7 @@ interface InputProps {
 export interface InputRef {
   selectOption: (option: OptionType) => void;
   getInputValue: () => string;
+  reset: () => void;
 }
 
 const Input = forwardRef<InputRef, InputProps>(
@@ -66,6 +67,13 @@ const Input = forwardRef<InputRef, InputProps>(
       },
       getInputValue() {
         return inputRef.current!.value;
+      },
+      reset() {
+        inputRef.current!.value = "";
+        setFilteredList(options);
+        setSelectedOption(null);
+        if (onChangeInput) onChangeInput("");
+        if (onChange) onChange(null);
       },
     }));
 

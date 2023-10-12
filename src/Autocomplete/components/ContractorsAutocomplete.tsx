@@ -13,6 +13,7 @@ import VirtualList, { VirtualListRef } from "./UI/VirtualList";
 
 export interface ContractorsAutocompleteRef {
   reset: () => void;
+  selectOption: (option: OptionType) => void;
 }
 
 interface AutocompleteProps {
